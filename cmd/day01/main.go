@@ -3,15 +3,16 @@ package main
 import (
 	"fmt"
 	"math"
-	"os"
 	"regexp"
 	"sort"
 	"strconv"
 	"strings"
+
+	helpers "github.com/eynopv/advent2024/cmd"
 )
 
 func main() {
-	data := readFileInput()
+	data := helpers.ReadFileInput("input.txt")
 	list_1, list_2 := parseData(data)
 
 	sort.Ints(list_1)
@@ -42,12 +43,6 @@ func main() {
 	fmt.Println("Part 2: ", similarity)
 }
 
-func readFileInput() string {
-	data, err := os.ReadFile("./input.txt")
-	nilOrPanic(err)
-	return string(data)
-}
-
 func parseData(d string) ([]int, []int) {
 	list_1 := []int{}
 	list_2 := []int{}
@@ -62,9 +57,9 @@ func parseData(d string) ([]int, []int) {
 			}
 
 			left, err := strconv.Atoi(numbers[0])
-			nilOrPanic(err)
+			helpers.NilOrPanic(err)
 			right, err := strconv.Atoi(numbers[1])
-			nilOrPanic(err)
+			helpers.NilOrPanic(err)
 
 			list_1 = append(list_1, left)
 			list_2 = append(list_2, right)
@@ -72,10 +67,4 @@ func parseData(d string) ([]int, []int) {
 	}
 
 	return list_1, list_2
-}
-
-func nilOrPanic(err error) {
-	if err != nil {
-		panic(err)
-	}
 }
