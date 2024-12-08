@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"strconv"
 	"strings"
 
 	helpers "github.com/eynopv/advent2024/cmd"
@@ -79,10 +78,7 @@ func parseData(d string) [][]int {
 			level := []int{}
 			numbers := strings.Split(line, " ")
 			for _, n := range numbers {
-				number, err := strconv.Atoi(n)
-				if err != nil {
-					panic(err)
-				}
+				number := helpers.ParseInt(n)
 				level = append(level, number)
 			}
 			levels = append(levels, level)
